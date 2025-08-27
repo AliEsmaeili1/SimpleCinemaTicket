@@ -5,7 +5,7 @@ namespace Core.DTO.Request
     /// <summary>
     /// Seat Request DTO model
     /// </summary>
-    public class SeatAddRequest:IRequest<Seat>
+    public class SeatAddRequest
     {
         public int HallId { get; set; }
         public int SeatNo { get; set; }
@@ -14,17 +14,5 @@ namespace Core.DTO.Request
         public bool IsVip { get; set; }
         public decimal ExtraPrice { get; set; }
 
-        public Seat ToDomain()
-        {
-            return new Seat()
-            {
-                HallId = HallId,
-                SeatNo = SeatNo,
-                SeatRow = SeatRow,
-                IsAvailable = IsAvailable,
-                IsVip = IsVip,
-                ExtraPrice = ExtraPrice
-            };
-        }
     }
 }

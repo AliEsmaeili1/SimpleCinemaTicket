@@ -16,3 +16,4 @@ C:\Users\a.esmaeili\source\repos\CinemaTicketSn\CinemaTicket\obj\Debug\net8.0\re
 C:\Users\a.esmaeili\source\repos\CinemaTicketSn\CinemaTicket\obj\Debug\net8.0\CinemaTicket.pdb
 C:\Users\a.esmaeili\source\repos\CinemaTicketSn\CinemaTicket\obj\Debug\net8.0\CinemaTicket.genruntimeconfig.cache
 C:\Users\a.esmaeili\source\repos\CinemaTicketSn\CinemaTicket\obj\Debug\net8.0\ref\CinemaTicket.dll
+C:\Users\a.esmaeili\source\repos\CinemaTicketSn\CinemaTicket\obj\Debug\net8.0\CinemaTicket.sourcelink.json

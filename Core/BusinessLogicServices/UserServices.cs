@@ -9,6 +9,8 @@ namespace Core.BusinessLogicServices
     public class UserServices: BaseService<User, UserAddRequest, UserResponse, UserUpdateRequest>
                                ,IUserServiceContracts
     {
-        public UserServices(IMapper<User, UserResponse, UserAddRequest> mapper) : base(mapper) { }
+        public UserServices
+            (IMapper<User, UserResponse, UserAddRequest> mapper) 
+            : base(mapper) { }
     }
 }

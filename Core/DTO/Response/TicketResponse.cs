@@ -15,11 +15,4 @@ namespace Core.DTO.Response
         public int ShowTimeId { get; set; }
         public string? Payment { get; set; }//strategy design pattern
     }
-    public static class TicketExtensionClass
-    {
-        public static TicketResponse ToTicketResponse(this Ticket ticket)
-        {
-         
-        }
-    }
 }

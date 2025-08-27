@@ -9,6 +9,8 @@ namespace Core.BusinessLogicServices
     public class CinemaService:BaseService<Cinema, CinemaAddRequst, CinemaResponse, CinemUpdateRequest>
                                ,ICinemaServiceContracts
     {
-        public CinemaService(IMapper<Cinema, CinemaResponse, CinemaAddRequst> mapper) : base(mapper) { }
+        public CinemaService
+            (IMapper<Cinema, CinemaResponse, CinemaAddRequst> mapper) 
+            : base(mapper) { }
     }
 }

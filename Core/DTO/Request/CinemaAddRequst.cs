@@ -5,18 +5,9 @@ namespace Core.DTO.Request
     /// <summary>
     /// Represent Cinema Request DTO
     /// </summary>
-    public class CinemaAddRequst:IRequest<Cinema>
+    public class CinemaAddRequst
     {
         public string? Name { get; set; }
         public string? Address { get; set; }
-
-        public Cinema ToDomain()
-        {
-            return new Cinema()
-            {
-                Address = Address,
-                Name = Name
-            };
-        }
     }
 }

@@ -10,14 +10,7 @@ namespace CinemaTicket
     {
         static void Main(string[] args)
         {
-            IBaseServiceContracts<UserAddRequest, UserResponse, UserUpdateRequest>
-                baseServiceContracts = new UserServices();
-
-            baseServiceContracts.Add(new UserAddRequest()
-            {
-                FullName = "aliesmaeil",
-                Email = "a@gmail.com"
-            });
+           
 
         }
     }

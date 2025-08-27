@@ -1,4 +1,5 @@
 ﻿using Core.BusinessLogicContracts;
+using Core.Domain.Entities;
 using Core.DTO.Request;
 using Core.DTO.Response;
 using Core.DTO.Update;
@@ -6,6 +7,11 @@ using Core.DTO.Update;
 namespace Core.BusinessLogicServices
 {
     public class ShowTimeService
-        :BaseService<ShowTimeAddRequest, ShowTimeResponse, ShowTimeUpdateRequest>, IShowTimeContracts
-    {}
+        :BaseService<ShowTime, ShowTimeAddRequest,
+                     ShowTimeResponse, ShowTimeUpdateRequest>, IShowTimeContracts
+    {
+        public ShowTimeService
+            (IMapper<ShowTime, ShowTimeResponse, ShowTimeAddRequest> mapper)
+            : base(mapper) { }
+    }
 }

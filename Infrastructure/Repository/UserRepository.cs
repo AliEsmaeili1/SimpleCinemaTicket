@@ -1,0 +1,6 @@
+﻿using Core.Domain.Entities;
+
+namespace Infrastructure.Repository
+{
+    public class UserRepository : BaseRepository<User> { }
+}
