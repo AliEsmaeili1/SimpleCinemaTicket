@@ -16,6 +16,6 @@ namespace Core.Domain.Entities
         //navigator
         public Movie? Movie { get; set; } = null;
         public Hall? Hall { get; set; } = null;
-        public ICollection<Ticket> Tickets { get; set; }
+        public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
 }

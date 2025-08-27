@@ -1,14 +1,11 @@
-﻿using Core.DTO.Request;
-using Core.DTO.Response;
-using Core.DTO.Update;
-
+﻿using Core.Domain.Entities;
+using Core.Domain.RepositoryContacts;
 namespace Core.BusinessLogicContracts
 {
     /// <summary>
     /// Cinema Service Contracts
     /// </summary>
-    public interface ICinemaServiceContracts:
-                       IBaseServiceContracts<CinemaAddRequst,  CinemaResponse, CinemUpdateRequest>
+    public interface ICinemaRepository:IBaseRespository<Cinema>
     {
     }
 }

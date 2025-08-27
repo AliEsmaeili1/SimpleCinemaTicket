@@ -7,7 +7,7 @@ using Core.DTO.Update;
 namespace Core.BusinessLogicServices
 {
     public class CinemaService:BaseService<Cinema, CinemaAddRequst, CinemaResponse, CinemUpdateRequest>
-                               ,ICinemaServiceContracts
+                               ,ICinemaRepository
     {
         public CinemaService
             (IMapper<Cinema, CinemaResponse, CinemaAddRequst> mapper) 
