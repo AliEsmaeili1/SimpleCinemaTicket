@@ -10,5 +10,8 @@ namespace Core.DTO.Response
         public int Id { get; set; }
         public int CinemaId { get; set; }
         public int Capacity { get; set; }
+
+        public ICollection<ShowTime> ShowTimes { get; set; }
+        public ICollection<Seat> Seats { get; set; }
     }
 }

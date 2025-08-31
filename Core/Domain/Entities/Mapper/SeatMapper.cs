@@ -1,23 +1,39 @@
 ﻿using Core.DTO.Request;
 using Core.DTO.Response;
+using Core.DTO.Update;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Core.Domain.Entities.Mapper
 {
     /// <summary>
     /// Represent Convert Entity to Response for DTO
     /// </summary>
-    public class SeatMapper : IMapper<Seat, SeatResponse, SeatAddRequest>
+    public class SeatMapper : IMapper<Seat, SeatResponse>
     {
-        public Seat ToEntity(SeatAddRequest request)
+        public Seat ToEntity<TInput>(TInput input) where TInput : class
         {
-            return new Seat()
+            return input switch
             {
-                HallId = request.HallId,
-                SeatNo = request.SeatNo,
-                SeatRow = request.SeatRow,
-                IsAvailable = request.IsAvailable,
-                IsVip = request.IsVip,
-                ExtraPrice = request.ExtraPrice
+                SeatAddRequest request => new Seat()
+                {
+                    SeatNo = request.SeatNo,
+                    SeatRow = request.SeatRow,
+                    IsVip = request.IsVip,
+                    IsAvailable = request.IsAvailable,
+                    HallId = request.HallId,
+                    ExtraPrice = request.ExtraPrice
+                },
+                SeatUpdateRequest update => new Seat()
+                {
+                    Id = update.Id,
+                    SeatNo = update.SeatNo,
+                    SeatRow = update.SeatRow,
+                    IsVip = update.IsVip,
+                    IsAvailable = update.IsAvailable,
+                    HallId = update.HallId,
+                    ExtraPrice = update.ExtraPrice
+                },
+                _ => throw new ArgumentException($"Unsupported input type: {typeof(TInput).Name}")
             };
         }
 
@@ -31,7 +47,8 @@ namespace Core.Domain.Entities.Mapper
                 HallId = entity.HallId,
                 IsVip = entity.IsVip,
                 SeatNo = entity.SeatNo,
-                SeatRow = entity.SeatRow
+                SeatRow = entity.SeatRow,
+                Tickets = entity.Tickets
             };
         }
     }

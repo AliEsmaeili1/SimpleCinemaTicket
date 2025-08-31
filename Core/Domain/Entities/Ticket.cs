@@ -14,8 +14,8 @@ namespace Core.Domain.Entities
         public string? Payment { get; set; }//strategy design pattern
 
         //Navigator
-        public User? User { get; set; } = null;
-        public Seat? Seat { get; set; } = null;
-        public ShowTime? ShowTime { get; set; } = null;
+        public User User { get; set; } 
+        public Seat Seat { get; set; } 
+        public ShowTime ShowTime { get; set; }
     }
 }

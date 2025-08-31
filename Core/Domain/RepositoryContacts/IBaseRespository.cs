@@ -17,9 +17,15 @@ namespace Core.Domain.RepositoryContacts
         /// <summary>
         /// given object based on matches by id
         /// </summary>
-        /// <param name="predicate">expressin to matches user list</param>
+        /// <param name="predicate">expressin to matches object list</param>
         /// <returns></returns>
         TEntity? Get(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
+        /// get all of object matches by id
+        /// </summary>
+        /// <param name="predicate">expressin to matches object list</param>
+        /// <returns></returns>
+        List<TEntity>? GetMany(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
         /// Add new object into list
         /// </summary>
@@ -31,7 +37,7 @@ namespace Core.Domain.RepositoryContacts
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        TEntity Update(TEntity user);
+        TEntity Update(TEntity entity);
         /// <summary>
         /// Delete object base on id
         /// </summary>

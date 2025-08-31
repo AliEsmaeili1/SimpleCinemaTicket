@@ -10,5 +10,7 @@ namespace Core.Domain.RepositoryContacts
     /// <summary>
     /// Domain Repository Cinema
     /// </summary>
-    internal interface ICinemaRepository : IBaseRespository<Cinema> { }
+    public interface ICinemaRepository : IBaseRespository<Cinema> 
+    {
+    }
 }

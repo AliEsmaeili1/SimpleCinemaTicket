@@ -14,8 +14,8 @@ namespace Core.Domain.Entities
         public DateTime StartAt { get; set; }
         public decimal BasePrice { get; set; }
         //navigator
-        public Movie? Movie { get; set; } = null;
-        public Hall? Hall { get; set; } = null;
-        public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+        public Movie Movie { get; set; } = null;
+        public Hall Hall { get; set; } = null;
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }

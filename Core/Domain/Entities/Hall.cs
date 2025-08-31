@@ -12,8 +12,8 @@ namespace Core.Domain.Entities
         public int Capacity { get; set; }
 
         //Navigator
-        public Cinema? Cinema { get; set; }
-        public ICollection<ShowTime>? ShowTimes { get; set; }
-        public ICollection<Seat>? Seats { get; set; }
+        public Cinema Cinema { get; set; }
+        public ICollection<ShowTime> ShowTimes { get; set; }
+        public ICollection<Seat> Seats { get; set; }
     }
 }

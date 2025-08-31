@@ -1,4 +1,6 @@
 ﻿using Core.Domain.Entities;
+using System;
+using System.Net;
 
 namespace Core.DTO.Request
 {
@@ -13,6 +15,14 @@ namespace Core.DTO.Request
         public bool IsAvailable { get; set; }
         public bool IsVip { get; set; }
         public decimal ExtraPrice { get; set; }
+
+        public SeatAddRequest DeepCopy()
+        {
+            
+            SeatAddRequest newRequest = (SeatAddRequest)this.MemberwiseClone();
+
+            return newRequest;
+        }
 
     }
 }

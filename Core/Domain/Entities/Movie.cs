@@ -15,6 +15,6 @@ namespace Core.Domain.Entities
         public GenerEnums Gener { get; set; }
 
         //Navigator
-        public ICollection<ShowTime>? ShowTimes { get; set; } = new List<ShowTime>();
+        public ICollection<ShowTime>? ShowTimes { get; set; }
     }
 }

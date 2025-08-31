@@ -12,7 +12,7 @@ namespace Core.Domain.Entities
         public string? Name { get; set; }
         public string? Address { get; set; }
         //Navigator
-        public ICollection<Hall>? Hall { get; set; } = new List<Hall>();
+        public ICollection<Hall>? Halls { get; set; }
 
     }
 }

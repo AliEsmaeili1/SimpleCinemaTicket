@@ -1,20 +1,35 @@
 ﻿using Core.DTO.Request;
 using Core.DTO.Response;
+using Core.DTO.Update;
 
 namespace Core.Domain.Entities.Mapper
 {
     /// <summary>
     /// Represent Convert Entity to Response for DTO
     /// </summary>
-    public class ShowTimeMapper : IMapper<ShowTime, ShowTimeResponse,ShowTimeAddRequest>
+    public class ShowTimeMapper : IMapper<ShowTime, ShowTimeResponse>
     {
-        public ShowTime ToEntity(ShowTimeAddRequest request)
+        public ShowTime ToEntity<TInput>(TInput input) where TInput : class
         {
-            return new ShowTime()
+            return input switch
             {
-                StartAt = request.StartAt,
-                MovieId = request.MovieId,
-                BasePrice = request.BasePrice
+                ShowTimeAddRequest request => new ShowTime()
+                {
+                    StartAt = request.StartAt,
+                    BasePrice = request.BasePrice,
+                    MovieId = request.MovieId,
+                    HallId = request.HallId,
+                },
+                ShowTimeUpdateRequest update => new ShowTime()
+                {
+                    Id = update.Id,
+                    StartAt = update.StartAt,
+                    BasePrice = update.BasePrice,
+                    MovieId = update.MovieId,
+                    HallId = update.HallId,
+
+                },
+                _ => throw new ArgumentException($"Unsupported input type: {typeof(TInput).Name}")
             };
         }
 

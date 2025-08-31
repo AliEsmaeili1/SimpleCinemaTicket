@@ -7,5 +7,6 @@ namespace Core.BusinessLogicContracts
     public interface IMovieServiceContracts
                      :IBaseServiceContracts<MovieAddRequest,MovieResponse,MovieUpdateRequest>
     {
+        bool MovieIsExist(int movieId);
     }
 }

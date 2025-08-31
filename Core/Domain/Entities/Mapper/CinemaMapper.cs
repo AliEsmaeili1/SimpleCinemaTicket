@@ -1,5 +1,6 @@
 ﻿using Core.DTO.Request;
 using Core.DTO.Response;
+using Core.DTO.Update;
 using System.Net;
 using System.Xml.Linq;
 
@@ -9,14 +10,24 @@ namespace Core.Domain.Entities.Mapper
     /// Represent Convert Cinema Entity to Response for DTO
     /// </summary>
     public class CinemaMapper 
-        : IMapper<Cinema, CinemaResponse, CinemaAddRequst>
+        : IMapper<Cinema, CinemaResponse>
     {
-        public Cinema ToEntity(CinemaAddRequst request)
+        public Cinema ToEntity<TInput>(TInput input) where TInput : class
         {
-            return new Cinema()
+            return input switch
             {
-                Address = request.Address,
-                Name = request.Name
+                CinemaAddRequst request => new Cinema()
+                {
+                    Name = request.Name,
+                    Address = request.Address  
+                },
+                CinemUpdateRequest update => new Cinema()
+                {
+                    Id = update.Id,
+                    Name = update.Name,
+                    Address = update.Address
+                },
+                _ => throw new ArgumentException($"Unsupported input type: {typeof(TInput).Name}")
             };
         }
 

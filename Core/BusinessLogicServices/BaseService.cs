@@ -1,5 +1,6 @@
 ﻿using Core.BusinessLogicContracts;
 using Core.Domain.Entities;
+using Core.Domain.RepositoryContacts;
 using Core.DTO.Request;
 using System.Reflection;
 
@@ -7,43 +8,63 @@ namespace Core.BusinessLogicServices
 {
     public abstract class BaseService<TEntity, TRequest, TResponse, TUpdate> 
         : IBaseServiceContracts<TRequest, TResponse, TUpdate>
-        where TEntity : class
+        where TEntity : class, IEntity
         where TRequest : class
         where TResponse : class
         where TUpdate : class
     {
-        private readonly IMapper<TEntity, TResponse, TRequest> _mapper;
-        protected BaseService(IMapper<TEntity, TResponse, TRequest> mapper) :base()
+        protected readonly IMapper<TEntity, TResponse> _mapper;
+        protected readonly IBaseRespository<TEntity> _repository;
+        
+        public BaseService
+            (IMapper<TEntity, TResponse> mapper,
+            IBaseRespository<TEntity> repository) 
+            :base()
         {
             _mapper = mapper;
+            _repository = repository;
         }
 
         public ICollection<TResponse> GetAll()
         {
-            throw new NotImplementedException();
+            List<TEntity> result = _repository.GetAll();
+
+            return result.Select(r => _mapper.ToResponseDomain(r)).ToList();
         }
-        public TResponse GetById(int id)
+        public TResponse GetById(int? id)
         {
-            throw new NotImplementedException();
+            if(id is null)
+                throw new ArgumentNullException("id");
+            TEntity? entity = _repository.Get(item => item.Id == id);
+            if(entity is null)
+                throw new ArgumentNullException(nameof(entity));    
+            return _mapper.ToResponseDomain(entity);
         }
         public TResponse Add(TRequest request)
         {
             //Validation: if request is not null
             if(request is null)
                 throw new ArgumentNullException(nameof(request));
-            TEntity domainObject = _mapper.ToEntity(request);
+            TEntity entity = _mapper.ToEntity(request);
 
-            //Implement save to repository
+            _repository.Add(entity);
+            
+            return _mapper.ToResponseDomain(entity);//(TResponse)(object)domainObject;
+        }
+        public TResponse Update(TUpdate entityUpdate)
+        {
+            TEntity entity_to_update = _mapper.ToEntity(entityUpdate);
+            if(entity_to_update is null)
+                throw new ArgumentNullException(nameof (entity_to_update));
+            TEntity entity_updated = _repository.Update(entity_to_update);
 
-            return _mapper.ToResponseDomain(domainObject);//(TResponse)(object)domainObject;
+            return _mapper.ToResponseDomain(entity_updated);
         }
-        public TResponse Update(TUpdate update)
+        public bool DeleteById(int? id)
         {
-            throw new NotImplementedException();
-        }
-        public TResponse DeleteById(int id)
-        {
-            throw new NotImplementedException();
+            if(id is null)
+                throw new ArgumentNullException("id");
+            return _repository.DeleteById(id);
         }
     }
 }

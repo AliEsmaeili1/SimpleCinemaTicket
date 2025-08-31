@@ -17,7 +17,7 @@ namespace Core.Domain.Entities
         public decimal ExtraPrice { get; set; }
 
         //Navigator
-        public Hall? Hall { get; set; } = null;
-        public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>(); 
+        public Hall Hall { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }

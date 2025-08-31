@@ -11,14 +11,5 @@ namespace Core.DTO.Update
         public string? FullName { get; set; }
         public string? Email { get; set; }
         public ICollection<Ticket>? Tickets { get; set; } = null;
-        public User ToUser()
-        {
-            return new User
-            {
-                Id = Id,
-                FullName = FullName,
-                Email = Email
-            };
-        }
     }
 }

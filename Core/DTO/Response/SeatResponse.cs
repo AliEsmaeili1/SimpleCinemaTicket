@@ -14,5 +14,7 @@ namespace Core.DTO.Response
         public bool IsAvailable { get; set; }
         public bool IsVip { get; set; }
         public decimal ExtraPrice { get; set; }
+
+        public ICollection<Ticket>? Tickets { get; set; }
     }
 }

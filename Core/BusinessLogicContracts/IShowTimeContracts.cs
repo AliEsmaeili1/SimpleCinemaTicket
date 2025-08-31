@@ -7,5 +7,6 @@ namespace Core.BusinessLogicContracts
     public interface IShowTimeContracts
                      :IBaseServiceContracts<ShowTimeAddRequest, ShowTimeResponse, ShowTimeUpdateRequest>
     {
+        bool CheckConflictTime(ShowTimeAddRequest showTimeAddRequest);
     }
 }

@@ -15,7 +15,29 @@ namespace Infrastructure.CinemaTicketDataBase
         public DbSet<Hall> Hall { get; set; }
         public DbSet<Movie> Movie { get; set; }
         public DbSet<Cinema> Cinema { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Ticket → ShowTime (keep cascade if preferred)
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.ShowTime)
+                .WithMany(st => st.Tickets)
+                .HasForeignKey(t => t.ShowTimeId)
+                .OnDelete(DeleteBehavior.Cascade); // or Restrict/NoAction
 
+            // Ticket → User (disable cascade)
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.User)
+                .WithMany(u => u.Tickets)
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // or NoAction
+
+            // Ticket → Seat (disable cascade)
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.Seat)
+                .WithMany(s => s.Tickets)
+                .HasForeignKey(t => t.SeatId)
+                .OnDelete(DeleteBehavior.Restrict); // or NoAction
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

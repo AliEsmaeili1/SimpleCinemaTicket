@@ -1,5 +1,6 @@
 ﻿using Core.DTO.Request;
 using Core.DTO.Response;
+using Core.DTO.Update;
 using System.Net.Sockets;
 
 namespace Core.Domain.Entities.Mapper
@@ -7,16 +8,30 @@ namespace Core.Domain.Entities.Mapper
     /// <summary>
     /// Represent Convert Entity to Response for DTO
     /// </summary>
-    public class TicketMapper : IMapper<Ticket, TicketResponse, TicketAddRequest>
+    public class TicketMapper : 
+        IMapper<Ticket, TicketResponse>
     {
-        public Ticket ToEntity(TicketAddRequest request)
+        public Ticket ToEntity<TInput>(TInput input) where TInput : class
         {
-            return new Ticket
+            return input switch
             {
-                SeatId = request.SeatId,
-                UserId = request.UserId,
-                ShowTimeId = request.ShowTimeId,
-                Payment = request.Payment
+                TicketAddRequest request => new Ticket()
+                {
+                    SeatId = request.SeatId,
+                    UserId = request.UserId,
+                    ShowTimeId = request.ShowTimeId,
+                    Payment = request.Payment
+                },
+                TicketUpdateRequest update => new Ticket()
+                {
+                    Id = update.Id,
+                    SeatId = update.SeatId,
+                    UserId = update.UserId,
+                    ShowTimeId = update.ShowTimeId,
+                    Payment = update.Payment
+               
+                },
+                _ => throw new ArgumentException($"Unsupported input type: {typeof(TInput).Name}")
             };
         }
 

@@ -1,9 +1,11 @@
-﻿namespace Core.BusinessLogicContracts
+﻿using System.Linq.Expressions;
+
+namespace Core.BusinessLogicContracts
 {
     /// <summary>
     /// Base Gneric Class from Service Contracts
     /// </summary>
-    /// <typeparam name="TRequst">AddRequest Entity DTO class </typeparam>
+    /// <typeparam name="TRequest">AddRequest Entity DTO class </typeparam>
     /// <typeparam name="TResponse">Response Entity DTO class </typeparam>
     /// <typeparam name="TUpdate">Update request DTO Class</typeparam>
     public interface IBaseServiceContracts<TRequest, TResponse, TUpdate>
@@ -12,9 +14,9 @@
         where TUpdate : class
     {
         ICollection<TResponse> GetAll();
-        TResponse GetById(int id);
+        TResponse GetById(int? id);
         TResponse Add(TRequest requst);
-        TResponse Update(TUpdate update);
-        TResponse DeleteById(int id);
+        TResponse Update(TUpdate entityUpdate);
+        bool DeleteById(int? id);
     }
 }

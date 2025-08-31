@@ -8,7 +8,10 @@ namespace Core.BusinessLogicContracts
     /// Hall Service Contracts
     /// </summary>
     public interface IHallServiceContracts
-                     :IBaseServiceContracts<HallAddRequest, HallResponse, HallUpdateRequest>
+                     :IBaseServiceContracts
+                      <HallAddRequest, HallResponse, HallUpdateRequest>
     {
+        HallResponse GetHallWhithShowTime(int hall_id);
+        bool ValidHall(int hallId);
     }
 }
